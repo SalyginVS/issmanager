@@ -1,0 +1,28 @@
+version: '3'
+services:
+    issmanager-nginx:
+        build:
+            context: ./issmanager/docker/development
+            dockerfile: nginx.docker
+        volumes:
+            - ./issmanager:/app
+        depends_on:
+            - issmanager-php-fpm
+        ports:
+            - "8080:80"
+    issmanager-php-fpm:
+        build:
+            context: ./issmanager/docker/development
+            dockerfile: php-fpm.docker
+        volumes:
+            - ./issmanager:/app
+    issmanager-php-cli:
+        build:
+            context: ./issmanager/docker/development
+            dockerfile: php-cli.docker
+        volumes:
+            - ./issmanager:/app
+            - composer:/root/.composer/cache
+
+volumes:
+    composer:

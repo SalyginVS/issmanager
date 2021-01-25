@@ -1,0 +1,14 @@
+version: '3'
+services:
+    issmanager-nginx:
+        image: ${REGISTRY_ADDRESS}/issmanager-nginx:${IMAGE_TAG}
+        restart: always
+        depends_on:
+            - issmanager-php-fpm
+        ports:
+            - "80:80"
+    issmanager-php-fpm:
+        image: ${REGISTRY_ADDRESS}/issmanager-php-fpm:${IMAGE_TAG}
+        restart: always
+    issmanager-php-cli:
+        image: ${REGISTRY_ADDRESS}/issmanager-php-cli:${IMAGE_TAG}
