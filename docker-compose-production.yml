@@ -10,5 +10,29 @@ services:
     issmanager-php-fpm:
         image: ${REGISTRY_ADDRESS}/issmanager-php-fpm:${IMAGE_TAG}
         restart: always
+        environment:
+            APP_SECRET: ${issmanager_APP_SECRET}
+            DATABASE_URL: pgsql://app:${issmanager_DB_PASSWORD}@issmanager-postgres:5432/app
+            MAILER_URL: null://localhost
+        depends_on:
+            - issmanager-postgres
     issmanager-php-cli:
         image: ${REGISTRY_ADDRESS}/issmanager-php-cli:${IMAGE_TAG}
+        environment:
+            APP_SECRET: ${issmanager_APP_SECRET}
+            DATABASE_URL: pgsql://app:${issmanager_DB_PASSWORD}@issmanager-postgres:5432/app
+            MAILER_URL: null://localhost
+        depends_on:
+            - issmanager-postgres
+    issmanager-postgres:
+        image: ${REGISTRY_ADDRESS}/issmanager-postgres:${IMAGE_TAG}
+        restart: always
+        volumes:
+            - issmanager-postgres:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: app
+            POSTGRES_PASSWORD: ${issmanager_DB_PASSWORD}
+            POSTGRES_DB: app
+
+volumes:
+    issmanager-postgres:
