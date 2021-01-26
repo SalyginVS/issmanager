@@ -25,6 +25,7 @@ issmanager-composer-install:
 issmanager-test:
 	docker-compose run --rm issmanager-php-cli php bin/phpunit
 
+
 build-production:
 	docker build --pull --file=issmanager/docker/production/nginx.docker --tag ${REGISTRY_ADDRESS}/issmanager-nginx:${IMAGE_TAG} issmanager
 	docker build --pull --file=issmanager/docker/production/php-fpm.docker --tag ${REGISTRY_ADDRESS}/issmanager-php-fpm:${IMAGE_TAG} issmanager
