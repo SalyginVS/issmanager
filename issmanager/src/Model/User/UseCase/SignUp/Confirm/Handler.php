@@ -5,7 +5,7 @@ declare(script_types=1);
 namespace App\Model\User\UseCase\SignUp\Confirm;
 
 use App\Model\User\Entity\User\UserRepository;
-use App\Model\Flasher;
+use App\Model\Flusher;
 
 class Handler
 {
@@ -14,14 +14,14 @@ class Handler
      */
     private $users;
     /**
-     * @var Flasher
+     * @var Flusher
      */
-    private $flasher;
+    private $flusher;
 
-    public function __construct(UserRepository $users, Flasher $flasher)
+    public function __construct(UserRepository $users, Flusher $flusher)
     {
         $this->users = $users;
-        $this->flasher = $flasher;
+        $this->flusher = $flusher;
     }
     public function handle(Command $command): void
     {
@@ -29,6 +29,6 @@ class Handler
             throw new \DomainException('Incorrect or confirmed token.');
         }
         $user->confirmSignUp();
-        $this->flasher->flush();
+        $this->flusher->flush();
     }
 }

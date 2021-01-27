@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Model;
 
 
-interface Flasher
+interface Flusher
 {
     public function flush();
 }

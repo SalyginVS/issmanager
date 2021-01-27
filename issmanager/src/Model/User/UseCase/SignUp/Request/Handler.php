@@ -11,7 +11,7 @@ use App\Model\User\Entity\User\UserRepository;
 use App\Model\User\Service\SignUpConfirmTokenizer;
 use App\Model\User\Service\ConfirmTokenSender;
 use App\Model\User\Service\PasswordHasher;
-use App\Model\Flasher;
+use App\Model\Flusher;
 
 class Handler
 {
@@ -26,9 +26,9 @@ class Handler
      */
     private $hasher;
     /**
-     * @var Flasher
+     * @var Flusher
      */
-    private $flasher;
+    private $flusher;
     /**
      * @var SignUpConfirmTokenizer
      */
@@ -38,12 +38,12 @@ class Handler
      */
     private $sender;
 
-    public function __construct(UserRepository $users, PasswordHasher $hasher, SignUpConfirmTokenizer $tokenizer, ConfirmTokenSender $sender, Flasher $flasher)
+    public function __construct(UserRepository $users, PasswordHasher $hasher, SignUpConfirmTokenizer $tokenizer, ConfirmTokenSender $sender, Flusher $flusher)
     {
 
         $this->users = $users;
         $this->hasher = $hasher;
-        $this->flasher = $flasher;
+        $this->flusher = $flusher;
         $this->tokenizer = $tokenizer;
         $this->sender = $sender;
     }
@@ -57,7 +57,7 @@ class Handler
         }
         $user = new User(
             Id::next(),
-            new \DateTimeImmutable(),
+            new \DateTimeImmutable()
         );
 
         $user->signUpByEmail(
@@ -67,6 +67,6 @@ class Handler
         );
         $this->users->add($user);
         $this->sender->send($email, $token);
-        $this->flasher->flush();
+        $this->flusher->flush();
     }
 }

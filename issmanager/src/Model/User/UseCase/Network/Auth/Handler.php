@@ -4,7 +4,7 @@ declare(script_types=1);
 
 namespace App\Model\User\UseCase\Network\Auth;
 
-use App\Model\Flasher;
+use App\Model\Flusher;
 use App\Model\User\Entity\User\Id;
 use App\Model\User\Entity\User\User;
 use App\Model\User\Entity\User\UserRepository;
@@ -16,14 +16,14 @@ class Handler
      */
     private $users;
     /**
-     * @var Flasher
+     * @var Flusher
      */
-    private $flasher;
+    private $flusher;
 
-    public function __construct(UserRepository $users, Flasher $flasher)
+    public function __construct(UserRepository $users, Flusher $flusher)
     {
         $this->users = $users;
-        $this->flasher = $flasher;
+        $this->flusher = $flusher;
     }
     public function handle(Command $command): void
     {
@@ -33,6 +33,6 @@ class Handler
         $user = new User(Id::next(), new \DateTimeImmutable());
         $user->signUpByNetwork($command->network, $command->identity);
         $this->users->add($user);
-        $this->flasher->flush();
+        $this->flusher->flush();
     }
 }
