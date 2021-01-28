@@ -17,7 +17,7 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-issmanager-init: issmanager-composer-install  issmanager-wait-db issmanager-migrations
+issmanager-init: issmanager-composer-install  issmanager-wait-db issmanager-migrations  issmanager-fixtures
 
 issmanager-composer-install:
 	docker-compose run --rm issmanager-php-cli composer install
@@ -27,6 +27,9 @@ issmanager-wait-db:
 
 issmanager-migrations:
 	docker-compose run --rm issmanager-php-cli php bin/console doctrine:migrations:migrate --no-interaction
+
+issmanager-fixtures:
+	docker-compose run --rm issmanager-php-cli php bin/console doctrine:fixtures:load --no-interaction
 
 issmanager-test:
 	docker-compose run --rm issmanager-php-cli php bin/phpunit
