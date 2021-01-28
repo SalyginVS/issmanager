@@ -15,6 +15,7 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use App\Model\User\Service\PasswordHasher;
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
@@ -24,11 +25,20 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     private $urlGenerator;
     private $csrfTokenManager;
+    /**
+     * @var PasswordHasher
+     */
+    private $hasher;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager)
+    public function __construct(
+        UrlGeneratorInterface $urlGenerator,
+        CsrfTokenManagerInterface $csrfTokenManager,
+        PasswordHasher $hasher
+    )
     {
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->hasher = $hasher;
     }
 
     public function supports(Request $request)
@@ -71,11 +81,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         return $user;
     }
 
-    public function checkCredentials($credentials, UserInterface $user)
+    public function checkCredentials($credentials, UserInterface $user): bool
     {
         // Check the user's password or other credentials and return true or false
         // If there are no credentials to check, you can just return true
-        throw new \Exception('TODO: check the credentials inside '.__FILE__);
+        return $this->hasher->validate($credentials['password'], $user->getPassword());
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
