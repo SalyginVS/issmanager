@@ -17,10 +17,16 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-issmanager-init: issmanager-composer-install
+issmanager-init: issmanager-composer-install  issmanager-wait-db issmanager-migrations
 
 issmanager-composer-install:
 	docker-compose run --rm issmanager-php-cli composer install
+
+issmanager-wait-db:
+	until docker-compose exec -T issmanager-postgres pg_isready --timeout=0 --dbname=app ; do sleep 1 ; done
+
+issmanager-migrations:
+	docker-compose run --rm issmanager-php-cli php bin/console doctrine:migrations:migrate --no-interaction
 
 issmanager-test:
 	docker-compose run --rm issmanager-php-cli php bin/phpunit
