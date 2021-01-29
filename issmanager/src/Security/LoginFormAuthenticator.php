@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Model\User\Service\PasswordHasher;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
-use App\Model\User\Service\PasswordHasher;
+
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
@@ -25,9 +26,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     private $urlGenerator;
     private $csrfTokenManager;
-    /**
-     * @var PasswordHasher
-     */
     private $hasher;
 
     public function __construct(
