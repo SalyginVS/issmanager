@@ -17,10 +17,13 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-issmanager-init: issmanager-composer-install  issmanager-wait-db issmanager-migrations  issmanager-fixtures
+issmanager-init: issmanager-composer-install  issmanager-assets-install issmanager-wait-db issmanager-migrations  issmanager-fixtures
 
 issmanager-composer-install:
 	docker-compose run --rm issmanager-php-cli composer install
+
+issmanager-assets-install:
+	docker-compose run --rm issmanager-node yarn install
 
 issmanager-wait-db:
 	until docker-compose exec -T issmanager-postgres pg_isready --timeout=0 --dbname=app ; do sleep 1 ; done
@@ -34,6 +37,8 @@ issmanager-fixtures:
 issmanager-test:
 	docker-compose run --rm issmanager-php-cli php bin/phpunit
 
+assets-dev:
+	docker-compose run --rm issmanager-node npm run dev
 
 build-production:
 	docker build --pull --file=issmanager/docker/production/nginx.docker --tag ${REGISTRY_ADDRESS}/issmanager-nginx:${IMAGE_TAG} issmanager

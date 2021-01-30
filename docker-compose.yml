@@ -29,6 +29,11 @@ services:
         depends_on:
             - issmanager-postgres
             - mailer
+    issmanager-node:
+        image: node:14.15-alpine
+        volumes:
+            - ./issmanager:/app
+        working_dir: /app
     issmanager-postgres:
         image: postgres:11.2-alpine
         volumes:
