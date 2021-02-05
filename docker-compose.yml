@@ -29,6 +29,12 @@ services:
         depends_on:
             - issmanager-postgres
             - mailer
+    issmanager-node-watch:
+        image: node:14.15-alpine
+        volumes:
+            - ./issmanager:/app
+        working_dir: /app
+        command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && npm run watch"
     issmanager-node:
         image: node:14.15-alpine
         volumes:

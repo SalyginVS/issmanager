@@ -17,13 +17,16 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-issmanager-init: issmanager-composer-install  issmanager-assets-install issmanager-wait-db issmanager-migrations  issmanager-fixtures
+issmanager-init: issmanager-composer-install  issmanager-assets-install issmanager-wait-db issmanager-migrations  issmanager-fixtures issmanager-ready
+
+issmanager-clear:
+	docker run --rm -v ${PWD}/issmanager:/app --workdir=/app alpine rm -f .ready
 
 issmanager-composer-install:
 	docker-compose run --rm issmanager-php-cli composer install
 
 issmanager-assets-install:
-	docker-compose run --rm issmanager-node yarn install
+	docker-compose run --rm issmanager-node npm rebuild node-sass
 
 issmanager-wait-db:
 	until docker-compose exec -T issmanager-postgres pg_isready --timeout=0 --dbname=app ; do sleep 1 ; done
@@ -33,6 +36,9 @@ issmanager-migrations:
 
 issmanager-fixtures:
 	docker-compose run --rm issmanager-php-cli php bin/console doctrine:fixtures:load --no-interaction
+
+issmanager-ready:
+	docker run --rm -v ${PWD}/issmanager:/app --workdir=/app alpine touch .ready
 
 issmanager-test:
 	docker-compose run --rm issmanager-php-cli php bin/phpunit
