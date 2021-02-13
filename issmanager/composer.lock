@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6535cd220fc224d60867d8a26f805838",
+    "content-hash": "daae5a99661d4b85b21d928733c4710a",
     "packages": [
         {
             "name": "brick/math",
@@ -1284,6 +1284,58 @@
             "time": "2020-12-29T14:50:06+00:00"
         },
         {
+            "name": "finesse/swiftmailer-defaults-plugin",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FinesseRus/SwiftMailerDefaultsPlugin.git",
+                "reference": "8b0a0e2cf230a8df02e4e8780192191a3c10582f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FinesseRus/SwiftMailerDefaultsPlugin/zipball/8b0a0e2cf230a8df02e4e8780192191a3c10582f",
+                "reference": "8b0a0e2cf230a8df02e4e8780192191a3c10582f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "swiftmailer/swiftmailer": ">=4.0 <7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": ">=5.4.3 <8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Finesse\\SwiftMailerDefaultsPlugin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Surgie Finesse",
+                    "email": "finesserus@gmail.com"
+                }
+            ],
+            "description": "A plugin for SwiftMailer and Symfony that sets default properties for email Messages (from, sender, reply to and so on)",
+            "homepage": "https://github.com/FinesseRus/SwiftMailerDefaultsPlugin",
+            "keywords": [
+                "defaults",
+                "plugin",
+                "swiftmailer",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/FinesseRus/SwiftMailerDefaultsPlugin/issues",
+                "source": "https://github.com/FinesseRus/SwiftMailerDefaultsPlugin/tree/master"
+            },
+            "time": "2018-05-01T04:54:30+00:00"
+        },
+        {
             "name": "guzzlehttp/guzzle",
             "version": "7.2.0",
             "source": {
@@ -1947,6 +1999,85 @@
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "time": "2020-09-17T18:55:26+00:00"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/predis/predis.git",
+                "reference": "9930e933c67446962997b05201c69c2319bf26de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/predis/predis/zipball/9930e933c67446962997b05201c69c2319bf26de",
+                "reference": "9930e933c67446962997b05201c69c2319bf26de",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "cweagans/composer-patches": "^1.6",
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "extra": {
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "phpunit/phpunit-mock-objects": {
+                        "Fix PHP 7 and 8 compatibility": "./tests/phpunit_mock_objects.patch"
+                    },
+                    "phpunit/phpunit": {
+                        "Fix PHP 7 compatibility": "./tests/phpunit_php7.patch",
+                        "Fix PHP 8 compatibility": "./tests/phpunit_php8.patch"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net",
+                    "role": "Creator & Maintainer"
+                },
+                {
+                    "name": "Till Krüss",
+                    "homepage": "https://till.im",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/predis/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "support": {
+                "issues": "https://github.com/predis/predis/issues",
+                "source": "https://github.com/predis/predis/tree/v1.1.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/tillkruss",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-11T19:18:05+00:00"
         },
         {
             "name": "psr/cache",
@@ -6813,54 +6944,6 @@
             "time": "2020-11-14T09:36:49+00:00"
         },
         {
-            "name": "finesse/swiftmailer-defaults-plugin",
-            "version": "v2.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FinesseRus/SwiftMailerDefaultsPlugin.git",
-                "reference": "8b0a0e2cf230a8df02e4e8780192191a3c10582f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FinesseRus/SwiftMailerDefaultsPlugin/zipball/8b0a0e2cf230a8df02e4e8780192191a3c10582f",
-                "reference": "8b0a0e2cf230a8df02e4e8780192191a3c10582f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6",
-                "swiftmailer/swiftmailer": ">=4.0 <7.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": ">=5.4.3 <8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Finesse\\SwiftMailerDefaultsPlugin\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Surgie Finesse",
-                    "email": "finesserus@gmail.com"
-                }
-            ],
-            "description": "A plugin for SwiftMailer and Symfony that sets default properties for email Messages (from, sender, reply to and so on)",
-            "homepage": "https://github.com/FinesseRus/SwiftMailerDefaultsPlugin",
-            "keywords": [
-                "defaults",
-                "plugin",
-                "swiftmailer",
-                "symfony"
-            ],
-            "time": "2018-05-01T04:54:30+00:00"
-        },
-        {
             "name": "nikic/php-parser",
             "version": "v4.10.4",
             "source": {
@@ -7389,5 +7472,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }

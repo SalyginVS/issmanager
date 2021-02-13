@@ -18,6 +18,7 @@ services:
             - ./issmanager:/app
         depends_on:
             - issmanager-postgres
+            - issmanager-redis
             - mailer
     issmanager-php-cli:
         build:
@@ -28,6 +29,7 @@ services:
             - composer:/root/.composer/cache
         depends_on:
             - issmanager-postgres
+            - issmanager-redis
             - mailer
     issmanager-node-watch:
         image: node:14.15-alpine
@@ -50,7 +52,11 @@ services:
             POSTGRES_DB: app
         ports:
             - "54321:5432"
-
+    issmanager-redis:
+        image: redis:3.0-alpine
+        volumes:
+            - issmanager-redis:/data
+        command: redis-server --requirepass secret
     mailer:
         image: mailhog/mailhog
         ports:
@@ -58,4 +64,5 @@ services:
 
 volumes:
     issmanager-postgres:
+    issmanager-redis:
     composer:
