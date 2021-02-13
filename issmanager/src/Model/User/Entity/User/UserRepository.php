@@ -1,20 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
-
 namespace App\Model\User\Entity\User;
+
 use App\Model\EntityNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 
 class UserRepository
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private $em;
     /**
-     * @var EntityRepository
+     * @var \Doctrine\ORM\EntityRepository
      */
     private $repo;
 
@@ -26,7 +23,7 @@ class UserRepository
 
     /**
      * @param string $token
-     * @return User|null
+     * @return User|object|null
      */
     public function findByConfirmToken(string $token): ?User
     {
@@ -35,7 +32,7 @@ class UserRepository
 
     /**
      * @param string $token
-     * @return User|null
+     * @return User|object|null
      */
     public function findByResetToken(string $token): ?User
     {
@@ -48,9 +45,11 @@ class UserRepository
         if (!$user = $this->repo->find($id->getValue())) {
             throw new EntityNotFoundException('User is not found.');
         }
+        return $user;
     }
 
-    public function getByEmail(Email $email): User{
+    public function getByEmail(Email $email): User
+    {
         /** @var User $user */
         if (!$user = $this->repo->findOneBy(['email' => $email->getValue()])) {
             throw new EntityNotFoundException('User is not found.');
