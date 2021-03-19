@@ -34,5 +34,6 @@ class Handler
             $command->firstName,
             $command->lastName
             ));
+        $this->flusher->flush();
     }
 }
