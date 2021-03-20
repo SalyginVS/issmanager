@@ -28,6 +28,10 @@ class UsersController extends AbstractController
         $this->users = $users;
     }
 
+    /**
+     * @Route("", name="users")
+     * @return Response
+     */
     public function index(): Response
     {
         $users = $this->users->all();
