@@ -12,6 +12,10 @@
 
 {% block body %}
 
+    <div class="controls">
+        <a href="{{ path('users.role', {'id': user.id}) }}" class="btn btn-primary">Change Role</a>
+    </div>
+
     <div class="box">
         <table class="table table-bordered">
             <tbody>
