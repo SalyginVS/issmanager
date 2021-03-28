@@ -4,6 +4,7 @@ declare(script_types=1);
 
 namespace App\Model\User\UseCase\Name;
 
+use App\Model\User\Entity\User\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
@@ -29,4 +30,11 @@ class Command
         $this->id = $id;
     }
 
+    public static function fromUser(User $user): self
+    {
+        $command = new self($user->getId()->getValue());
+        $command->firstName = $user->getName()->getFirst();
+        $command->lastName = $user->getName()->getLast();
+        return $command;
+    }
 }
