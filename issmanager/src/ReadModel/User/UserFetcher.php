@@ -40,7 +40,7 @@ class UserFetcher
                 ->from('user_users')
                 ->where('reset_token_token = :token')
                 ->setParameter(':token', $token)
-                ->execute()->fetchColumn(0) > 0;
+                ->execute()->fetchColumn() > 0;
     }
 
 
