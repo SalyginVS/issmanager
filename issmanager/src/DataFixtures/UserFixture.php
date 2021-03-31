@@ -9,7 +9,7 @@ use App\Model\User\Entity\User\User;
 use App\Model\User\Entity\User\Id;
 use App\Model\User\Service\PasswordHasher;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 class UserFixture extends Fixture
 {
