@@ -20,13 +20,9 @@ class ProjectFixture extends Fixture
         $manager->persist($active);
 
         $active = $this->createProject('Second Project', 2);
-        $active->addDepartment(DepartmentId::next(), 'Development');
-        $active->addDepartment(DepartmentId::next(), 'Marketing');
         $manager->persist($active);
 
         $archived = $this->createArchivedProject('Third Project', 3);
-        $active->addDepartment(DepartmentId::next(), 'Development');
-        $active->addDepartment(DepartmentId::next(), 'Marketing');
         $manager->persist($archived);
 
         $manager->flush();
