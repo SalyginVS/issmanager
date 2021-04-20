@@ -225,7 +225,7 @@ class User
     public function activate(): void
     {
         if ($this->isActive()) {
-            throw new \DomainException('User is already blocked.');
+            throw new \DomainException('User is already active.');
         }
         $this->status = self::STATUS_ACTIVE;
     }

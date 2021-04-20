@@ -14,14 +14,14 @@ class HomeTest extends WebTestCase
         $client->request('GET', '/');
 
         $this->assertSame(302, $client->getResponse()->getStatusCode());
-        $this->assertSame('http://localhost/login', $client->getResponse()->headers->get('Location'));
+        $this->assertSame('/login', $client->getResponse()->headers->get('Location'));
     }
 
     public function testSuccess(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'admin@app.test',
-            'PHP_AUTH_PW' => '123456',
+            'PHP_AUTH_PW' => 'password',
         ]);
         $crawler = $client->request('GET', '/');
 
