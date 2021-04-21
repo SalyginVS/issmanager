@@ -9,7 +9,7 @@ use App\Model\Work\Entity\Members\Member\Id;
 use App\Model\Work\Entity\Projects\Project\Project;
 use App\Model\Work\UseCase\Projects\Project\Membership;
 use App\Controller\ErrorHandler;
-use App\Security\Voter\Work\ProjectAccess;
+use App\Security\Voter\Work\Projects\ProjectAccess;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
