@@ -73,7 +73,7 @@ final class Version20210603154128 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP SEQUENCE work_projects_tasks_seq CASCADE');
+        // $this->addSql('DROP SEQUENCE work_projects_tasks_seq CASCADE');
         $this->addSql('ALTER TABLE user_user_networks ALTER user_id TYPE UUID');
         $this->addSql('ALTER TABLE user_user_networks ALTER user_id DROP DEFAULT');
         $this->addSql('ALTER TABLE user_users ALTER id TYPE UUID');
