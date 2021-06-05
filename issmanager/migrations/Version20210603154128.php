@@ -20,7 +20,7 @@ final class Version20210603154128 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SEQUENCE work_projects_tasks_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE work_projects_tasks_seq INCREMENT BY 1 MINVALUE 1 START 1000');
         $this->addSql('ALTER TABLE user_user_networks ALTER user_id TYPE UUID');
         $this->addSql('ALTER TABLE user_user_networks ALTER user_id DROP DEFAULT');
         $this->addSql('ALTER TABLE user_users ALTER id TYPE UUID');
