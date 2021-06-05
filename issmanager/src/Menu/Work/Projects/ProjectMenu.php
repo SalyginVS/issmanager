@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menu\WorkProjects;
+namespace App\Menu\Work\Projects;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
@@ -32,6 +32,18 @@ class ProjectMenu
             ->setExtra('routes', [
                 ['route' => 'work.projects.project.show'],
                 ['pattern' => '/^work.projects.project.show\..+/']
+            ])
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link');
+
+        $menu
+            ->addChild('Tasks', [
+                'route' => 'work.projects.project.tasks',
+                'routeParameters' => ['project_id' => $options['project_id']]
+            ])
+            ->setExtra('routes', [
+                ['route' => 'work.projects.project.tasks'],
+                ['pattern' => '/^work.projects.project.tasks\..+/']
             ])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link');
